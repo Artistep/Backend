@@ -2,16 +2,16 @@
 
 ## 기술 스택
 
-|구분|상세|
-|---|---|
-|WebFramework|Spring Boot|
-|DB 접근 기술|Spring Data JPA, QueryDSL|
-|DBMS|MySQL|
-|협업 툴|Slack, Git|
+|구분| 상세                           |
+|---|------------------------------|
+|WebFramework| Spring Boot, Spring Security |
+|DB 접근 기술| Spring Data JPA, QueryDSL    |
+|DBMS| MySQL                        |
+|협업 툴| Slack, Git                   |
 
 ---
 
-## 스키마
+## ERD
 
 [설계 후 첨부 예정]()
 

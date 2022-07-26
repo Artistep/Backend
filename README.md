@@ -60,12 +60,12 @@ main branch 에서 발생한 버그 수정 후 병합
 
 ---
 
----
-
 # 네이밍 컨벤션
 
 패키지, 변수, 함수 : Camel
+
 클래스, 인터페이스 : Pascal
 
 # 커밋 메세지
+
 [커밋 템플릿 사용](https://velog.io/@bky373/Git-%EC%BB%A4%EB%B0%8B-%EB%A9%94%EC%8B%9C%EC%A7%80-%ED%85%9C%ED%94%8C%EB%A6%BF)

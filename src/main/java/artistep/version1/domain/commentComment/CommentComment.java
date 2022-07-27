@@ -1,10 +1,10 @@
-package artistep.version1.domain.user;
+package artistep.version1.domain.commentComment;
 
 import artistep.version1.domain.avatar.Avatar;
-import artistep.version1.domain.userInfo.UserInfo;
+import artistep.version1.domain.comment.Comment;
+import artistep.version1.domain.post.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class CommentComment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,15 +26,9 @@ public class User {
     @OneToOne
     private Avatar avatar;
 
-    @JoinColumn(name = "user_info_id")
+    @JoinColumn(name = "comment_id")
     @OneToOne
-    private UserInfo userInfo;
-
-    @Column
-    private String loginId;
-
-    @Column
-    private String password;
+    private Comment comment;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

@@ -1,10 +1,8 @@
-package artistep.version1.domain.user;
+package artistep.version1.domain.postFile;
 
-import artistep.version1.domain.avatar.Avatar;
-import artistep.version1.domain.userInfo.UserInfo;
+import artistep.version1.domain.post.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -12,29 +10,23 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class PostFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "avatar_id")
+    @JoinColumn(name = "post_id")
     @OneToOne
-    private Avatar avatar;
-
-    @JoinColumn(name = "user_info_id")
-    @OneToOne
-    private UserInfo userInfo;
+    private Post post;
 
     @Column
-    private String loginId;
-
-    @Column
-    private String password;
+    private String link;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

@@ -1,10 +1,10 @@
-package artistep.version1.domain.user;
+package artistep.version1.domain.chattingRoomContent;
 
-import artistep.version1.domain.avatar.Avatar;
-import artistep.version1.domain.userInfo.UserInfo;
+
+import artistep.version1.domain.chattingRoom.ChattingRoom;
+import artistep.version1.domain.chattingRoomFile.ChattingRoomFile;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -16,25 +16,22 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class ChattingRoomContent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "avatar_id")
+    @JoinColumn(name = "chatting_room_id")
     @OneToOne
-    private Avatar avatar;
+    private ChattingRoom chattingRoom;
 
-    @JoinColumn(name = "user_info_id")
+    @JoinColumn(name = "chatting_room_file_id")
     @OneToOne
-    private UserInfo userInfo;
+    private ChattingRoomFile chattingRoomFile;
 
     @Column
-    private String loginId;
-
-    @Column
-    private String password;
+    private String link;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

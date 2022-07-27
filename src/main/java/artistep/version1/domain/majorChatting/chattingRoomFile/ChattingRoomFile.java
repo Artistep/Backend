@@ -1,6 +1,6 @@
-package artistep.version1.domain.chattingRoomFile;
+package artistep.version1.domain.majorChatting.chattingRoomFile;
 
-import artistep.version1.domain.chattingRoom.ChattingRoom;
+import artistep.version1.domain.majorChatting.chattingRoom.ChattingRoom;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;

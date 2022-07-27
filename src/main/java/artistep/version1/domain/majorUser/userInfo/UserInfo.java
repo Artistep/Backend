@@ -1,4 +1,5 @@
-package artistep.version1.domain.avatar;
+package artistep.version1.domain.majorUser.userInfo;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,20 +14,32 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Avatar {
+public class UserInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private String nickname;
+    private String firstName;
 
     @Column
-    private String bio;
+    private String lastName;
 
     @Column
-    private String picture;
+    private String email;
+
+    @Column
+    private String phoneNumber;
+
+    @Column
+    private LocalDateTime birth;
+
+    @Column
+    private Integer genre;
+
+    @Column
+    private String belong;
 
     @CreatedDate
     private LocalDateTime createdAt;

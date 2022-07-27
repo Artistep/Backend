@@ -1,4 +1,4 @@
-package artistep.version1.domain.user;
+package artistep.version1.domain.majorUser.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

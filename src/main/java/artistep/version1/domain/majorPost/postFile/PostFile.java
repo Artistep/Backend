@@ -1,6 +1,6 @@
-package artistep.version1.domain.chattingRoom;
+package artistep.version1.domain.majorPost.postFile;
 
-import artistep.version1.domain.user.User;
+import artistep.version1.domain.majorPost.post.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -10,23 +10,23 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChattingRoom {
+public class PostFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "created_room_user_id")
+    @JoinColumn(name = "post_id")
     @OneToOne
-    private User created_room_user_id;
+    private Post post;
 
-    @JoinColumn(name = "invited_room_user_id")
-    @OneToOne
-    private User invited_room_user_id;
+    @Column
+    private String link;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

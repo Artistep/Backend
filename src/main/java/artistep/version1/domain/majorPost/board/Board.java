@@ -1,4 +1,4 @@
-package artistep.version1.domain.board;
+package artistep.version1.domain.majorPost.board;
 
 
 import lombok.AllArgsConstructor;

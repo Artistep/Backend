@@ -1,7 +1,7 @@
-package artistep.version1.domain.post;
+package artistep.version1.domain.majorPost.likePost;
 
-import artistep.version1.domain.avatar.Avatar;
-import artistep.version1.domain.board.Board;
+import artistep.version1.domain.majorUser.avatar.Avatar;
+import artistep.version1.domain.majorPost.post.Post;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
+public class LikePost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +25,9 @@ public class Post {
     @OneToOne
     private Avatar avatar;
 
-    @JoinColumn(name = "board_id")
+    @JoinColumn(name = "post_id")
     @OneToOne
-    private Board board;
-
-    private String title;
-
-    private String content;
+    private Post post;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

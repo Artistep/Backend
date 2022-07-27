@@ -1,7 +1,7 @@
-package artistep.version1.domain.follow;
+package artistep.version1.domain.majorUser.user;
 
-
-import artistep.version1.domain.user.User;
+import artistep.version1.domain.majorUser.avatar.Avatar;
+import artistep.version1.domain.majorUser.userInfo.UserInfo;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -15,19 +15,25 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Follow {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "following_user_id")
+    @JoinColumn(name = "avatar_id")
     @OneToOne
-    private User following_user_id;
+    private Avatar avatar;
 
-    @JoinColumn(name = "followed_user_id")
+    @JoinColumn(name = "user_info_id")
     @OneToOne
-    private User followed_user_id;
+    private UserInfo userInfo;
+
+    @Column
+    private String loginId;
+
+    @Column
+    private String password;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

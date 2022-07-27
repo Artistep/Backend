@@ -1,8 +1,7 @@
-package artistep.version1.domain.commentComment;
+package artistep.version1.domain.majorPost.post;
 
-import artistep.version1.domain.avatar.Avatar;
-import artistep.version1.domain.comment.Comment;
-import artistep.version1.domain.post.Post;
+import artistep.version1.domain.majorUser.avatar.Avatar;
+import artistep.version1.domain.majorPost.board.Board;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -16,7 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentComment {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +25,13 @@ public class CommentComment {
     @OneToOne
     private Avatar avatar;
 
-    @JoinColumn(name = "comment_id")
+    @JoinColumn(name = "board_id")
     @OneToOne
-    private Comment comment;
+    private Board board;
+
+    private String title;
+
+    private String content;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

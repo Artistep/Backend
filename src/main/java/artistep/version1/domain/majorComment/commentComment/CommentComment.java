@@ -1,8 +1,7 @@
-package artistep.version1.domain.chattingRoomContent;
+package artistep.version1.domain.majorComment.commentComment;
 
-
-import artistep.version1.domain.chattingRoom.ChattingRoom;
-import artistep.version1.domain.chattingRoomFile.ChattingRoomFile;
+import artistep.version1.domain.majorUser.avatar.Avatar;
+import artistep.version1.domain.majorComment.comment.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -16,22 +15,19 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ChattingRoomContent {
+public class CommentComment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "chatting_room_id")
+    @JoinColumn(name = "avatar_id")
     @OneToOne
-    private ChattingRoom chattingRoom;
+    private Avatar avatar;
 
-    @JoinColumn(name = "chatting_room_file_id")
+    @JoinColumn(name = "comment_id")
     @OneToOne
-    private ChattingRoomFile chattingRoomFile;
-
-    @Column
-    private String link;
+    private Comment comment;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

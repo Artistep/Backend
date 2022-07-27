@@ -1,7 +1,8 @@
-package artistep.version1.domain.likePost;
+package artistep.version1.domain.majorChatting.chattingRoomContent;
 
-import artistep.version1.domain.avatar.Avatar;
-import artistep.version1.domain.post.Post;
+
+import artistep.version1.domain.majorChatting.chattingRoom.ChattingRoom;
+import artistep.version1.domain.majorChatting.chattingRoomFile.ChattingRoomFile;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -15,19 +16,22 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LikePost {
+public class ChattingRoomContent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "avatar_id")
+    @JoinColumn(name = "chatting_room_id")
     @OneToOne
-    private Avatar avatar;
+    private ChattingRoom chattingRoom;
 
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "chatting_room_file_id")
     @OneToOne
-    private Post post;
+    private ChattingRoomFile chattingRoomFile;
+
+    @Column
+    private String link;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

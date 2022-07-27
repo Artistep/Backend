@@ -1,7 +1,6 @@
-package artistep.version1.domain.comment;
+package artistep.version1.domain.majorChatting.chattingRoom;
 
-import artistep.version1.domain.avatar.Avatar;
-import artistep.version1.domain.post.Post;
+import artistep.version1.domain.majorUser.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -11,27 +10,23 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comment {
+public class ChattingRoom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "avatar_id")
+    @JoinColumn(name = "created_room_user_id")
     @OneToOne
-    private Avatar avatar;
+    private User created_room_user_id;
 
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "invited_room_user_id")
     @OneToOne
-    private Post post;
-
-    @Column
-    private String content;
+    private User invited_room_user_id;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

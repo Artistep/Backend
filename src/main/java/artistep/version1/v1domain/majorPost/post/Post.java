@@ -25,7 +25,7 @@ public class Post {
     private User user;
 
     @Column
-    private String category;
+    private PostCategory postCategory;
 
     @Column
     private String title;

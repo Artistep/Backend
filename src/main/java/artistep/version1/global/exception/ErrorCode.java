@@ -15,11 +15,18 @@ public enum ErrorCode {
      400 Error - BAD_REQUEST
      */
     INVALID_REQUEST(BAD_REQUEST, "요청이 올바르지 않습니다."),
+    JWT_SIGNATURE_EXCEPTION(BAD_REQUEST, "토큰 서명이 올바르지 않습니다."),
+    JWT_MALFORMED_EXCEPTION(BAD_REQUEST, "토큰이 올바르지 않습니다."),
+    JWT_UNSUPPORTED_EXCEPTION(BAD_REQUEST, "지원하지 않는 토큰 형식입니다."),
+    JWT_IllegalARGUMENT_EXCEPTION(BAD_REQUEST, "허용하지 않는 토큰입니다."),
+
 
     /**
      401 Error - UNAUTHORIZED
      */
     INVALID_AUTH(UNAUTHORIZED, "검증되지 않은 사용자 입니다."),
+    JWT_EXPIRED_EXCEPTION(UNAUTHORIZED, "토큰이 만료되었습니다."),
+
 
     /**
      403 Error - RESTRICTED
@@ -30,6 +37,8 @@ public enum ErrorCode {
      404 Error - NOT_FOUND
      */
     INVALID_FOUND(NOT_FOUND, "요청을 찾을 수 없습니다."),
+
+
 
     ;
 

@@ -54,6 +54,6 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @Column
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
 }

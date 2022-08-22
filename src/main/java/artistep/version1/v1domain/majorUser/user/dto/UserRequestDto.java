@@ -1,15 +1,12 @@
-package artistep.version1.v1domain.majorUser.user.kdhDto;
+package artistep.version1.v1domain.majorUser.user.dto;
 
 import artistep.version1.v1domain.majorUser.user.Genre;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
-
+import java.time.LocalDate;
 
 public class UserRequestDto {
 
@@ -25,10 +22,11 @@ public class UserRequestDto {
         // 휴대폰 번호
         private String phoneNumber;
         // 생년월일
-        private LocalDateTime birth;
+        private LocalDate birth;
         // 관심있는 장르 (입력 예시 : 리스너-힙합)
         private Genre genre;
         // 소속
         private String belong;
     }
+
 }

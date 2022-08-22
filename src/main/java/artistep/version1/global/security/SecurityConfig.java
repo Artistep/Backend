@@ -2,14 +2,13 @@ package artistep.version1.global.security;
 
 
 import artistep.version1.global.jwt.JwtAuthenticationFilter;
-import artistep.version1.v1domain.majorUser.user.Status;
+import artistep.version1.global.oauth.CustomOAuth2UserService;
+import artistep.version1.global.oauth.OAuth2SuccessHandler;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.expression.SecurityExpressionHandler;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.FilterInvocation;
-import org.springframework.security.web.authentication.logout.LogoutFilter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 
 /**
@@ -29,36 +28,25 @@ import org.springframework.security.web.authentication.logout.LogoutFilter;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    private final CustomOAuth2UserService customOAuth2UserService;
+    private final CustomOAuth2UserService customOAuth2UserService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
+    private final OAuth2SuccessHandler oAuth2SuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterAfter(jwtAuthenticationFilter, LogoutFilter.class);
-
-        http.authorizeRequests()
-                .mvcMatchers("/", "/signUp", "/access-denied", "/exception/**").permitAll()
-                .mvcMatchers("/dashboard").hasRole("USER")
-                .mvcMatchers("/admin").hasRole("ADMIN")
-                .anyRequest().authenticated();
-//                .expressionHandler(configExpressionHandler());
-//
-//        http.exceptionHandling()
-//                .authenticationEntryPoint(configAuthenticationEntryPoint())
-//                .accessDeniedHandler(configAccessDeniedHandler());
-//
-//        http.oauth2Login()
-//                .userInfoEndpoint().userService(customOAuth2UserService)
-//                .and()
-//                .successHandler(configSuccessHandler())
-//                .failureHandler(configFailureHandler())
-//                .permitAll();
-//
-//        http.httpBasic();
-//
-//        http.logout()
-//                .deleteCookies("JSESSIONID");
+        http.httpBasic().disable()
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+                .oauth2Login()
+                .successHandler(oAuth2SuccessHandler)
+                .userInfoEndpoint().userService(customOAuth2UserService);
     }
+
+
 
 
 //    private SecurityExpressionHandler<FilterInvocation> configExpressionHandler() {

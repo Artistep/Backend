@@ -15,6 +15,7 @@ public enum ErrorCode {
      400 Error - BAD_REQUEST
      */
     INVALID_REQUEST(BAD_REQUEST, "요청이 올바르지 않습니다."),
+    OVERLAP_EMAIL(BAD_REQUEST, "이미 존재하는 이메일 입니다."),
     JWT_SIGNATURE_EXCEPTION(BAD_REQUEST, "토큰 서명이 올바르지 않습니다."),
     JWT_MALFORMED_EXCEPTION(BAD_REQUEST, "토큰이 올바르지 않습니다."),
     JWT_UNSUPPORTED_EXCEPTION(BAD_REQUEST, "지원하지 않는 토큰 형식입니다."),

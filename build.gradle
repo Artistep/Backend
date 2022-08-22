@@ -67,12 +67,16 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 
-	/*
-	TEST Implementation
-	 */
+	// TEST Implementation
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.batch:spring-batch-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+
+	// JUnit 5
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+	testCompileOnly 'junit:junit:4.13.2'
+	testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.9.0'
 
 	// Swagger
 	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
@@ -84,7 +88,7 @@ tasks.named('test') {
 }
 
 
-//querydsl 추가 시작
+// Querydsl Setting Start
 def querydslDir = "$buildDir/generated/querydsl"
 
 querydsl {
@@ -103,4 +107,4 @@ configurations {
 	}
 	querydsl.extendsFrom compileClasspath
 }
-//querydsl 추가 끝
+// Querydsl Setting End

@@ -115,8 +115,6 @@ public class JwtUtillizer {
                 .parseClaimsJws(token).getBody();
     }
 
-
-
     // AccessToken 에서 userId 꺼내기
     public Long jwtResolveToUserId(String token) {
         Object claims = Long.valueOf(Jwts.parserBuilder()

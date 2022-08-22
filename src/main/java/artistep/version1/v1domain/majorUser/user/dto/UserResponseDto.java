@@ -1,13 +1,13 @@
-package artistep.version1.v1domain.majorUser.user.kdhDto;
+package artistep.version1.v1domain.majorUser.user.dto;
 
 import artistep.version1.v1domain.majorUser.user.User;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Data
-@Builder
 public class UserResponseDto {
 
     /**
@@ -17,9 +17,9 @@ public class UserResponseDto {
      게시글 링크 리스트
      추천 유저 리스트
      */
+    @Data @Builder
+    @NoArgsConstructor @AllArgsConstructor
     public static class MyPageResponseForm {
-
-        private String loginId;
 
         private String nickname;
 

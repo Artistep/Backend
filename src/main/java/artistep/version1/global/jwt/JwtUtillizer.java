@@ -2,30 +2,21 @@ package artistep.version1.global.jwt;
 
 import artistep.version1.global.exception.CustomException;
 import artistep.version1.global.exception.ErrorCode;
-import artistep.version1.v1domain.majorUser.user.Status;
 import artistep.version1.v1domain.majorUser.user.User;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Key;
-import java.security.SignatureException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Component
 public class JwtUtillizer {
 
+    // 어느시점에 secretKey 값이 등록되는가?
     @Value("${spring.jwt.secret-key}")
     private String secretKey;
 
@@ -61,7 +52,6 @@ public class JwtUtillizer {
                 .compact();
     }
 
-
 //    public Authentication getAuthentication(String token) {
 //        // 토큰 복호화
 //        Status claims = (Status) Jwts.parserBuilder()
@@ -82,7 +72,7 @@ public class JwtUtillizer {
 //    }
 
     // Jwt 토큰 유효성 검사
-    public boolean validateToken(String token) {
+    public void validateToken(String token) {
         try {
             Jwts.parserBuilder()
                     .setSigningKey(getSigningKey())
@@ -104,10 +94,9 @@ public class JwtUtillizer {
         catch (IllegalArgumentException ex) {
             throw new CustomException(ErrorCode.JWT_IllegalARGUMENT_EXCEPTION);
         }
-        return true;
     }
 
-    // AccessToken 에서 userId 꺼내기
+    // AccessToken 에서 Claims 꺼내기
     public Claims jwtResolve(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
@@ -117,10 +106,11 @@ public class JwtUtillizer {
 
     // AccessToken 에서 userId 꺼내기
     public Long jwtResolveToUserId(String token) {
-        Object claims = Long.valueOf(Jwts.parserBuilder()
+        Object claims = Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
-                .parseClaimsJws(token).getBody().getId());
+                .parseClaimsJws(token).getBody().get("id");
+
         return Long.valueOf(String.valueOf(claims));
     }
 

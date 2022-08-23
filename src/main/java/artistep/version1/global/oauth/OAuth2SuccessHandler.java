@@ -17,38 +17,42 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-import static artistep.version1.v1domain.majorUser.user.QUser.user;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
 @Component
 public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
-    private final JPAQueryFactory queryFactory;
     private final UserRepository userRepository;
+    private final JwtUtillizer jwtUtillizer;
 
 
-    // 지원이형공유 -> queryDSL INsert
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException, ServletException {
         OAuth2User oAuth2User = (OAuth2User)authentication.getPrincipal();
 
-
+        // 최초 OAuth 요청이라면 회원가입 처리를 한다.
         if (userRepository.findByEmail(oAuth2User.getAttribute("email")).isEmpty()) {
             String email = oAuth2User.getAttribute("email");
-            // 최초 로그인이라면 회원가입 처리를 한다.
-            User user = new User();
+            User userNeedToJoin = new User();
 
-            user.setEmail(email);
-            user.setStatus(Status.USER);
+            userNeedToJoin.setEmail(email);
+            userNeedToJoin.setStatus(Status.USER);
 
-            userRepository.save(user);
+            userRepository.save(userNeedToJoin);
         }
 
-        System.out.println("Redirect 실행 전");
-        response.sendRedirect("/");
-        System.out.println("Redirect 실행 완료");
+        // 최초 OAuth 요청이 아니라면, 로그인 처리를 한다. (토큰 발급)
+        else if (userRepository.findByEmail(oAuth2User.getAttribute("email")).isPresent()) {
+            Optional<User> loginUser = userRepository.findByEmail(oAuth2User.getAttribute("email"));
+
+            System.out.println(returnToken(loginUser.get()));
+        }
+    }
+
+    public String returnToken(User loginUser) {
+        return jwtUtillizer.createAccessToken(loginUser);
     }
 }

@@ -28,6 +28,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private static final String[] whitelist = {"/", "/user/detail-join", "/user/my-page"};
+
     private final CustomOAuth2UserService customOAuth2UserService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
@@ -38,16 +40,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeRequests()
-                .anyRequest().authenticated()
+                    .authorizeRequests()
+                    .antMatchers("/user/login").authenticated()
+                    .antMatchers(whitelist).permitAll()
                 .and()
-                .oauth2Login()
-                .successHandler(oAuth2SuccessHandler)
-                .userInfoEndpoint().userService(customOAuth2UserService);
+                    .oauth2Login()
+                    .successHandler(oAuth2SuccessHandler)
+                    .userInfoEndpoint().userService(customOAuth2UserService);
     }
-
-
-
 
 //    private SecurityExpressionHandler<FilterInvocation> configExpressionHandler() {
 //    }

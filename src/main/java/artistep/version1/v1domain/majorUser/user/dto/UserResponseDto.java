@@ -10,6 +10,21 @@ import java.util.List;
 
 public class UserResponseDto {
 
+    @Data @Builder
+    @NoArgsConstructor @AllArgsConstructor
+    public static class UserPreviewForm {
+
+        // 활동명
+        private String nickname;
+
+        // 유저 이름
+        private String username;
+
+        // 프사
+        private String picture;
+
+    }
+
     /**
     마이페이지 반환 DTO
      로그인아이디, 활동명, 상태메세지, 프로필사진 링크, 뱃지 리스트
@@ -28,8 +43,6 @@ public class UserResponseDto {
         private String picture;
 
         private String username;
-        
-        private List<String> badge;
 
         private Integer followerCount;
 

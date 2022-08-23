@@ -1,5 +1,6 @@
 package artistep.version1.v1domain.majorUser.user;
 
+import artistep.version1.v1domain.majorUser.badge.Badge;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

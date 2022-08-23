@@ -4,8 +4,8 @@ import artistep.version1.global.jwt.JwtUtillizer;
 import artistep.version1.v1domain.majorPost.likePost.repository.LikePostRepository;
 import artistep.version1.v1domain.majorPost.postFile.repository.PostFileRepository;
 import artistep.version1.v1domain.majorUser.follow.repository.FollowRepository;
+import artistep.version1.v1domain.majorUser.user.User;
 import artistep.version1.v1domain.majorUser.user.dto.UserRequestDto.DetailJoinForm;
-import artistep.version1.v1domain.majorUser.user.dto.UserResponseDto;
 import artistep.version1.v1domain.majorUser.user.dto.UserResponseDto.MyPageResponseForm;
 import artistep.version1.v1domain.majorUser.user.repository.UserRepository;
 import io.swagger.annotations.Api;
@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -38,11 +39,18 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @ApiOperation(value = "", notes = "OAuth 후 로그인 및 토큰 발급을 위한 컨트롤러")
+    @PostMapping("/login")
+    public ResponseEntity<?> loginKDH() {
+
+        return ResponseEntity.status(HttpStatus.OK).body("test");
+    }
+
     @ApiOperation(value = "", notes = "내 정보 페이지 불러오기")
     @GetMapping("/my-page")
-    public ResponseEntity<MyPageResponseForm> myPageMethodKDH(@Valid @RequestHeader String jwt) {
+    public ResponseEntity<MyPageResponseForm> myPageMethodKDH(@Valid @RequestHeader String Authorization) {
 
-        long userId = jwtUtillizer.jwtResolveToUserId(jwt);
+        long userId = jwtUtillizer.jwtResolveToUserId(Authorization.substring("Bearer ".length()));
 
         MyPageResponseForm data = userRepository.loadMyPage(userId);
         data.setFollowerCount(followRepository.NumberOfFollower(userId));

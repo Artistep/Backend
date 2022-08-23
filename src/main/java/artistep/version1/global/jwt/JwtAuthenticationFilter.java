@@ -4,10 +4,10 @@ import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.util.PatternMatchUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -20,9 +20,8 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-
+    private static final String[] whitelist = {"/", "/user/detail-join", "/user/login"};
     public static final String AUTHORIZATION_HEADER = "Authorization";
-    public static final String BEARER_PREFIX = "Bearer ";
 
     private final JwtUtillizer jwtUtillizer;
 
@@ -36,21 +35,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         return new UsernamePasswordAuthenticationToken(claims, null);
     }
 
+    private boolean checkIsNotWhitelist(String requestURL) {
+        return PatternMatchUtils.simpleMatch(whitelist, requestURL);
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws IOException, ServletException {
 
-        // 요청헤더인 Authorization 으로 부터 토큰을 가져온다.
-        String token = request.getHeader("Authorization");
+        if (!checkIsNotWhitelist(request.getRequestURI())) {
 
-        // 토큰 검증 후 true 면 Security Context 에 인증 정보 담기
-        if (jwtUtillizer.validateToken(token)) {
+            // 요청헤더인 Authorization 으로 부터 토큰을 가져온다.
+            String token = request.getHeader("Authorization").substring("Bearer ".length());
+
+            jwtUtillizer.validateToken(token);
+
+            // 토큰 검증 후 true 면 Security Context 에 인증 정보 담기
             getAuthentication(request);
             Authentication authentication = getAuthentication(request);
             SecurityContext context = SecurityContextHolder.getContext();
             context.setAuthentication(authentication);
         }
-
         filterChain.doFilter(request, response);
     }
 }

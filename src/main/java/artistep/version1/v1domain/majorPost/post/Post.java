@@ -24,7 +24,7 @@ public class Post {
     @ManyToOne
     private User user;
 
-    @Column
+    @Enumerated(EnumType.STRING)
     private PostCategory postCategory;
 
     @Column

@@ -62,9 +62,11 @@ main branch 에서 발생한 버그 수정 후 병합
 
 # 네이밍 컨벤션
 
-패키지, 변수, 함수 : Camel
+패키지, 변수, 메서드 : Camel
 
 클래스, 인터페이스 : Pascal
+
+! 메서드 : 메서드 끝에 본인 이니셜 남기기 (ex) public void testMethodKDH())
 
 # 커밋 메세지
 

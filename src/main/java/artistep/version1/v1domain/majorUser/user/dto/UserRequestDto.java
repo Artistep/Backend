@@ -17,8 +17,10 @@ public class UserRequestDto {
     public static class DetailJoinForm {
         // 회원가입 요청한 구글 이메일
         private String email;
-        // 활동명
+        // 닉네임
         private String nickname;
+        // 활동명
+        private String workingName;
         // 휴대폰 번호
         private String phoneNumber;
         // 생년월일
@@ -27,6 +29,26 @@ public class UserRequestDto {
         private Genre genre;
         // 소속
         private String belong;
+    }
+
+    @Data
+    public static class UpdatePictureForm {
+        private String imageLink;
+    }
+
+    @Data
+    public static class UpdateBioForm {
+        private String bio;
+    }
+
+    @Data
+    public static class UpdateWorkingNameForm {
+        private String workingName;
+    }
+
+    @Data
+    public static class UpdateNicknameForm {
+        private String nickName;
     }
 
 }

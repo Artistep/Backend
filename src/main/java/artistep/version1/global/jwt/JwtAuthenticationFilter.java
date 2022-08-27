@@ -35,15 +35,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         return new UsernamePasswordAuthenticationToken(claims, null);
     }
 
+    // URL 검증 -> /, /user/detail-join, /user/login 일 시 false
     private boolean checkIsNotWhitelist(String requestURL) {
-        return PatternMatchUtils.simpleMatch(whitelist, requestURL);
+        return !PatternMatchUtils.simpleMatch(whitelist, requestURL);
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws IOException, ServletException {
 
-        if (!checkIsNotWhitelist(request.getRequestURI())) {
+        if (checkIsNotWhitelist(request.getRequestURI())) {
 
             // 요청헤더인 Authorization 으로 부터 토큰을 가져온다.
             String token = request.getHeader("Authorization").substring("Bearer ".length());

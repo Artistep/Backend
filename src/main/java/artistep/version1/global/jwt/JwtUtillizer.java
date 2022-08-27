@@ -41,7 +41,7 @@ public class JwtUtillizer {
         claims.put("nickname", user.getNickname());
         claims.put("picture", user.getPicture());
         claims.put("genre", user.getGenre());
-        claims.put("status", user.getStatus().getKey());
+        claims.put("status", user.getStatus());
 
         // Access Token 생성
         return Jwts.builder()

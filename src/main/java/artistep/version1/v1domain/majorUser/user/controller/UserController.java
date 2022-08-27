@@ -4,7 +4,6 @@ import artistep.version1.global.jwt.JwtUtillizer;
 import artistep.version1.v1domain.majorPost.likePost.repository.LikePostRepository;
 import artistep.version1.v1domain.majorPost.postFile.repository.PostFileRepository;
 import artistep.version1.v1domain.majorUser.follow.repository.FollowRepository;
-import artistep.version1.v1domain.majorUser.user.User;
 import artistep.version1.v1domain.majorUser.user.dto.UserRequestDto.DetailJoinForm;
 import artistep.version1.v1domain.majorUser.user.dto.UserResponseDto.MyPageResponseForm;
 import artistep.version1.v1domain.majorUser.user.repository.UserRepository;
@@ -16,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,7 +32,7 @@ public class UserController {
     @PostMapping("/detail-join")
     public ResponseEntity<?> detailJoinControllerMethodKDH(@Valid @RequestBody DetailJoinForm detailJoinForm) {
 
-        userRepository.detailUserJoin(detailJoinForm);
+        userRepository.detailUserJoinKDH(detailJoinForm);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -52,7 +50,7 @@ public class UserController {
 
         long userId = jwtUtillizer.jwtResolveToUserId(Authorization.substring("Bearer ".length()));
 
-        MyPageResponseForm data = userRepository.loadMyPage(userId);
+        MyPageResponseForm data = userRepository.loadMyPageKDH(userId);
         data.setFollowerCount(followRepository.NumberOfFollower(userId));
         data.setFollowingCount(followRepository.NumberOfFollowing(userId));
         data.setPostLinkList(postFileRepository.loadLikePostLink(userId));

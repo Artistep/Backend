@@ -1,33 +1,23 @@
 package artistep.version1.v1domain.majorUser.user;
 
-
-import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
 public enum Genre {
 
-    ListenerHipHop("타입", "리스너-힙합"),
-    ListenerRhythmAndBlues("타입", "리스너-R&B"),
-    ListenerProducing("타입", "리스너-프로듀싱"),
-    ListenerComposition("타입", "리스너-작곡"),
+    리스너힙합, 리스너RB,리스너프로듀싱, 리스너작곡,
+    뮤지션힙합, 뮤지션RB, 뮤지션프로듀싱, 뮤지션작곡;
 
-    MusicianHipHop("타입", "뮤지션-힙합"),
-    MusicianRhythmAndBlues("타입", "뮤지션-R&B"),
-    MusicianProducing("타입", "뮤지션-프로듀싱"),
-    MusicianComposition("타입", "뮤지션-작곡");
-
-    private final String type;
-    private final String genre;
-
-    @JsonCreator
-    public static Genre from(String s) {
-        return Genre.valueOf(s.toString());
+    public String hiphop(String type) {
+        return type + "-힙합";
     }
-
-    public static String convertFromGenreToString(String s) {
-        return s.toString();
+    public String Rhythm(String type) {
+        return type + "-R&B";
+    }
+    public String Producing(String type) {
+        return type + "-프로듀싱";
+    }
+    public String Composition(String type) {
+        return type + "-작곡";
     }
 }

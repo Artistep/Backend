@@ -3,6 +3,7 @@ package artistep.version1.v1domain.majorUser.user.controller;
 import artistep.version1.v1domain.majorPost.likePost.repository.LikePostRepository;
 import artistep.version1.v1domain.majorPost.postFile.repository.PostFileRepository;
 import artistep.version1.v1domain.majorUser.follow.repository.FollowRepository;
+import artistep.version1.v1domain.majorUser.user.Genre;
 import artistep.version1.v1domain.majorUser.user.dto.UserRequestDto;
 import artistep.version1.v1domain.majorUser.user.dto.UserResponseDto;
 import artistep.version1.v1domain.majorUser.user.repository.UserRepository;
@@ -15,8 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-
-import static artistep.version1.v1domain.majorUser.user.Genre.ListenerComposition;
 
 
 @SpringBootTest
@@ -41,11 +40,11 @@ class UserControllerTest {
         detailJoinForm.setBelong("송");
         detailJoinForm.setBirth(LocalDate.of(1999, 10, 9));
         detailJoinForm.setEmail("peter6081@gmail.com");
-        detailJoinForm.setGenre(ListenerComposition);
+        detailJoinForm.setGenre(Genre.리스너RB);
         detailJoinForm.setNickname("diger");
         detailJoinForm.setPhoneNumber("01050616081");
 
-        userRepository.detailUserJoin(detailJoinForm);
+        userRepository.detailUserJoinKDH(detailJoinForm);
 
         Assertions.assertThat(userRepository.findByEmail("peter6081@gmail.com")).isPresent();
 
@@ -56,7 +55,7 @@ class UserControllerTest {
 
         Long userId = 8L;
 
-        UserResponseDto.MyPageResponseForm data = userRepository.loadMyPage(userId);
+        UserResponseDto.MyPageResponseForm data = userRepository.loadMyPageKDH(userId);
         data.setFollowerCount(followRepository.NumberOfFollower(userId));
         data.setFollowingCount(followRepository.NumberOfFollowing(userId));
         data.setPostLinkList(postFileRepository.loadLikePostLink(userId));

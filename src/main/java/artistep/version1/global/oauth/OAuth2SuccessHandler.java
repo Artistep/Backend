@@ -39,7 +39,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
             User userNeedToJoin = new User();
 
             userNeedToJoin.setEmail(email);
-            userNeedToJoin.setStatus(Status.USER);
+            userNeedToJoin.setStatus(Status.ROLE_USER);
 
             userRepository.save(userNeedToJoin);
         }

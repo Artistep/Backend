@@ -28,7 +28,7 @@
 | 담당자                               | 구분                                          |
 |-----------------------------------|---------------------------------------------|
 | [Hejow](https://github.com/Hejow) | 1페이지 (메인페이지) <br> 2페이지 (카테고리별 게시글 검색)       |
-|[diger-King](https://github.com/diger-king)| 3페이지 (카테고리별 게시판) <br> 5페이지 (내정보) <br> OAuth |
+|[K-Diger](https://github.com/K-Diger)| 3페이지 (카테고리별 게시판) <br> 5페이지 (내정보) <br> OAuth |
 
 ---
 

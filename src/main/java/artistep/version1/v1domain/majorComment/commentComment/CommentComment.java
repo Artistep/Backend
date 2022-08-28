@@ -19,7 +19,7 @@ public class CommentComment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @JoinColumn(name = "user_id")
     @ManyToOne

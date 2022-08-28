@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
 
 import javax.persistence.EntityManager;
 
@@ -27,5 +29,10 @@ public class BackendApplication {
 	@Bean
 	JPAQueryFactory jpaQueryFactory(EntityManager em) {
 		return new JPAQueryFactory(em);
+	}
+
+	@Bean
+	RedirectStrategy redirectStrategy() {
+		return new DefaultRedirectStrategy();
 	}
 }

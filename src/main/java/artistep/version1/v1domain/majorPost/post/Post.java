@@ -18,14 +18,14 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @JoinColumn(name = "user_id")
     @ManyToOne
     private User user;
 
-    @Column
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private PostCategory postCategory;
 
     @Column
     private String title;

@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class Badge {
 
     @Id @GeneratedValue
-    private Long id;
+    private long id;
 
     @JoinColumn(name = "user_id")
     @ManyToOne

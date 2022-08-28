@@ -28,7 +28,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static final String[] whitelist = {"/", "/user/detail-join", "/user/my-page"};
+    private static final String[] needToAuthenticateURI = {"/"};
+    private static final String[] needToJWTFiltering =
+            {       "/user/my-page", "/user/edit/profile-picture", "/user/edit/profile-bio",
+                    "/user/edit/profile-workingName", "/user/edit/profile-nickName", "/user/edit/profile-belong"};
 
     private final CustomOAuth2UserService customOAuth2UserService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -41,8 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/user/login").authenticated()
-                    .antMatchers(whitelist).permitAll()
+                    .antMatchers(needToAuthenticateURI).authenticated()
+                    .anyRequest().permitAll()
                 .and()
                     .oauth2Login()
                     .successHandler(oAuth2SuccessHandler)

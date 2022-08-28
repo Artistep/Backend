@@ -18,7 +18,7 @@ public class ChattingRoom {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @JoinColumn(name = "created_room_user_id")
     @ManyToOne

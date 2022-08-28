@@ -14,7 +14,7 @@ import java.security.Key;
 import java.util.*;
 
 @Component
-public class JwtUtillizer {
+public class JwtUtilizer {
 
     // 어느시점에 secretKey 값이 등록되는가?
     @Value("${spring.jwt.secret-key}")
@@ -29,7 +29,6 @@ public class JwtUtillizer {
     }
 
     //AccessToken 생성
-    @Transactional
     public String createAccessToken(User user) {
         Date now = new Date();
         Date accessTokenExpireIn = new Date(now.getTime() + ACCESS_TOKEN_EXPIRE_TIME);
@@ -50,6 +49,27 @@ public class JwtUtillizer {
                 .setExpiration(accessTokenExpireIn)
                 .signWith(getSigningKey(), SignatureAlgorithm.HS512)
                 .compact();
+    }
+
+    //AccessToken 생성
+    @Transactional
+    public String createRefreshToken(User user) {
+        Date now = new Date();
+        Date refreshTokenExpireIn = new Date(now.getTime() + REFRESH_TOKEN_EXPIRE_TIME);
+
+        //페이로드에 남길 정보들 (Id, loginId, role, restricted)
+        Claims claims = Jwts.claims();
+        claims.setSubject("Artistep-re");
+
+        // Access Token 생성
+        String refreshToken = Jwts.builder()
+                .setHeaderParam("type","JWT")
+                .setClaims(claims)
+                .setExpiration(refreshTokenExpireIn)
+                .signWith(getSigningKey(), SignatureAlgorithm.HS512)
+                .compact();
+
+        return refreshToken;
     }
 
 //    public Authentication getAuthentication(String token) {

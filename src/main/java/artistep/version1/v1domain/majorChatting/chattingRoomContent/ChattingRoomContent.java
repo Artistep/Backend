@@ -19,7 +19,7 @@ public class ChattingRoomContent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @JoinColumn(name = "chatting_room_id")
     @ManyToOne

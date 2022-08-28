@@ -23,4 +23,6 @@ public interface CustomUserRepository {
 
     // 활동명은 중복 불가
     void updateUserWorkingNameKDH(Long id, UpdateWorkingNameForm updateWorkingNameForm);
+
+    void updateUserBelongKDH(Long id, UpdateBelongForm belongForm);
 }

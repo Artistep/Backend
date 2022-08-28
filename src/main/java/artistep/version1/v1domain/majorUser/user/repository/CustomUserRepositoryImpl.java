@@ -22,6 +22,7 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
 
     private final JPAQueryFactory queryFactory;
 
+    // 추가 회원가입 - 부가 회원정보 입력 
     @Override
     public void detailUserJoinKDH(DetailJoinForm detailJoinForm) {
 
@@ -40,7 +41,9 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
     /**
      *
      * @param id
-     * @return : 닉네임, 자기소개, 프로필 사진 링크, 사용자 이름, 뱃지, 팔로워 수, 팔로잉 수, 좋아요 게시글 수, List<게시글 링크>, List<추천 유저>
+     * @return :
+     * 닉네임, 자기소개, 프로필 사진 링크, 사용자 이름, 뱃지, 팔로워 수, 팔로잉 수,
+     * 좋아요 게시글 수, List<게시글 링크>, List<추천 유저>
      *
      */
 
@@ -63,6 +66,7 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
         return data;
     }
 
+    // 프로필사진 업로드/수정
     @Override
     public void updateUserPictureKDH(Long id, UpdatePictureForm updatePictureForm) {
         queryFactory
@@ -72,6 +76,7 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
                 .execute();
     }
 
+    // 자기소개 업로드/수정
     @Override
     public void updateUserBioKDH(Long id, UpdateBioForm updateBioForm) {
         queryFactory
@@ -81,7 +86,7 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
                 .execute();
     }
 
-    // 중복허용
+    // 닉네임 업로드/수정 (중복허용)
     @Override
     public void updateUserNicknameKDH(Long id, UpdateNicknameForm updateNicknameForm) {
         queryFactory
@@ -91,21 +96,32 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
                 .execute();
     }
 
-    // 활동명은 중복 불가
+    // 활동명 업로드/수정
     @Override
     public void updateUserWorkingNameKDH(Long id, UpdateWorkingNameForm updateWorkingNameForm) {
-        List<User> searchWorkingName = queryFactory
+        // 이미 동일한 활동명이 존재하는 경우에는 예외처리
+        if (queryFactory
                 .selectFrom(user)
                 .where(user.workingName.eq(updateWorkingNameForm.getWorkingName()))
-                .fetch();
-
-        if (searchWorkingName.size() > 0) {
-            throw new CustomException(ErrorCode.OVERLAP_EMAIL);
+                .fetch().size() > 0)
+        {
+            throw new CustomException(ErrorCode.OVERLAP_WORKING_NAME);
         }
 
+        // 동일한 활동명이 존재하지 않는 경우에는 DB에 반영
         queryFactory
                 .update(user)
                 .set(user.workingName, updateWorkingNameForm.getWorkingName())
+                .where(user.id.eq(id))
+                .execute();
+    }
+
+    // 소속 업로드/수정
+    @Override
+    public void updateUserBelongKDH(Long id, UpdateBelongForm belongForm) {
+        queryFactory
+                .update(user)
+                .set(user.nickname, belongForm.getBelong())
                 .where(user.id.eq(id))
                 .execute();
     }

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class UserRequestDto {
@@ -32,23 +33,33 @@ public class UserRequestDto {
     }
 
     @Data
+    @NotNull(message = "null 을 입력하면 안됨")
     public static class UpdatePictureForm {
         private String imageLink;
     }
 
     @Data
+    @NotNull
     public static class UpdateBioForm {
         private String bio;
     }
 
     @Data
+    @NotNull
     public static class UpdateWorkingNameForm {
         private String workingName;
     }
 
     @Data
+    @NotNull
     public static class UpdateNicknameForm {
         private String nickName;
+    }
+
+    @Data
+    @NotNull
+    public static class UpdateBelongForm {
+        private String belong;
     }
 
 }

@@ -20,7 +20,7 @@ public class PostFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @JoinColumn(name = "post_id")
     @ManyToOne

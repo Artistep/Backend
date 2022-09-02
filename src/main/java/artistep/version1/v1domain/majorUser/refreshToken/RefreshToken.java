@@ -2,7 +2,6 @@ package artistep.version1.v1domain.majorUser.refreshToken;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;

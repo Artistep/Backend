@@ -2,8 +2,8 @@ package artistep.version1.global.security;
 
 
 import artistep.version1.global.jwt.JwtAuthenticationFilter;
-import artistep.version1.global.oauth.CustomOAuth2UserService;
-import artistep.version1.global.oauth.OAuth2SuccessHandler;
+import artistep.version1.global.googleOAuth.CustomOAuth2UserService;
+import artistep.version1.global.googleOAuth.OAuth2SuccessHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -51,20 +51,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .successHandler(oAuth2SuccessHandler)
                     .userInfoEndpoint().userService(customOAuth2UserService);
     }
-
-//    private SecurityExpressionHandler<FilterInvocation> configExpressionHandler() {
-//    }
-//
-//    private CustomAuthenticationEntryPoint configAuthenticationEntryPoint() {
-//    }
-//
-//    private CustomAccessDeniedHandler configAccessDeniedHandler() {
-//    }
-//
-//    private CustomAuthenticationSuccessHandler configSuccessHandler() {
-//    }
-//
-//    private CustomAuthenticationFailureHandler configFailureHandler() {
-//    }
 
 }

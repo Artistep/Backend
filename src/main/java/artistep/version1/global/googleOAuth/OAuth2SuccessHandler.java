@@ -1,4 +1,4 @@
-package artistep.version1.global.oauth;
+package artistep.version1.global.googleOAuth;
 
 
 import artistep.version1.global.jwt.JwtUtilizer;

@@ -6,6 +6,7 @@ import artistep.version1.v1domain.majorPost.post.dto.PostResponseDto.AllCategory
 import artistep.version1.v1domain.majorPost.post.repository.PostRepository;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +22,12 @@ public class PostController {
 
     private final PostRepository postRepository;
 
-//    public ResponseEntity<AllCategoryPostsPreviewForm> AllCategoryPostPreviewKDH(@Valid @RequestHeader String Authorization) {
-//
-//
-//    }
+    public ResponseEntity<AllCategoryPostsPreviewForm> AllCategoryPostPreviewKDH(@Valid @RequestHeader String Authorization) {
+
+        AllCategoryPostsPreviewForm result = new AllCategoryPostsPreviewForm();
+
+
+
+        return ResponseEntity.status(HttpStatus.OK).body(result);
+    }
 }

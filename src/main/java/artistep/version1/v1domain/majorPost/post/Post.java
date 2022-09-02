@@ -1,6 +1,7 @@
 package artistep.version1.v1domain.majorPost.post;
 
 import artistep.version1.v1domain.majorUser.user.User;
+import artistep.version1.v1domain.majorUser.user.Genre;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,10 @@ public class Post {
 
     @Enumerated(EnumType.STRING)
     private PostCategory postCategory;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "genre")
+    private Genre genre;
 
     @Column
     private String title;

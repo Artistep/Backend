@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class PostResponseDto {
-    /*
+    /**
      * 게시글 DTO
      * 타이틀, 활동명, 업데이트 시간, 좋아요 수, 댓글 수, 조회 수
      */
@@ -28,9 +28,9 @@ public class PostResponseDto {
         private Integer viewCnt;
     }
 
-    /*
-     * 상세보기 DTO
-     * 타이틀, 활동명, 내용. 업데이트 시간, 좋아요 수, 댓글 수, 첨부파일들
+    /**
+     * 게시글 상세보기 DTO
+     * 타이틀, 활동명, 내용. 업데이트 시간, 좋아요 수, 댓글 수, 첨부파일 id
      */
     @Data
     @Builder

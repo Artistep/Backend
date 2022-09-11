@@ -9,12 +9,27 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class PostRequestDto {
+    @Builder
+    @AllArgsConstructor
+    @Data
+    public static class PageForm {
+        private int page;
+        private int size;
+
+        public PageForm() {
+            this.page = 1;
+            this.size = 10;
+        }
+    }
+
     @Data
     @NotNull
     public static class UpdateTitleForm {
@@ -30,13 +45,7 @@ public class PostRequestDto {
     @Data
     @NotNull
     public static class UpdateCategoryForm {
-        private String category;
-    }
-
-    @Data
-    @NotNull
-    public static class UpdateUpdatedForm {
-        private LocalDateTime Updated;
+        private PostCategory postCategory;
     }
 
     @Data
@@ -44,4 +53,6 @@ public class PostRequestDto {
     public static class UpdateStatusForm {
         private String status;
     }
+
+    // 추가할 것 : 파일 수정
 }

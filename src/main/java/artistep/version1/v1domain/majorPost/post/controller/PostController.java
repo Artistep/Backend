@@ -21,8 +21,5 @@ public class PostController {
 
     private final PostRepository postRepository;
 
-//    public ResponseEntity<AllCategoryPostsPreviewForm> AllCategoryPostPreviewKDH(@Valid @RequestHeader String Authorization) {
-//
-//
-//    }
+
 }

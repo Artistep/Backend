@@ -31,4 +31,14 @@ public class CustomPostFileRepositoryImpl implements CustomPostFileRepository {
                         )
                 .fetch();
     }
+
+    @Override
+    public List<String> loadPostLinkWithPostIdHJ(Long postId) {
+        return queryFactory
+                .select(postFile.link)
+                .from(postFile)
+                .where(postFile.post.id.eq(postId))
+                .fetch();
+    }
+
 }

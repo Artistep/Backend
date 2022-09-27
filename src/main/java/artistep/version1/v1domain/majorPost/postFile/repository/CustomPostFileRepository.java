@@ -9,4 +9,6 @@ import java.util.List;
 public interface CustomPostFileRepository {
 
     List<String> loadLikePostLink(Long userId);
+
+    List<String> loadPostLinkWithPostIdHJ(Long postId);
 }

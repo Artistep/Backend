@@ -4,6 +4,7 @@ import artistep.version1.v1domain.majorUser.user.User;
 import artistep.version1.v1domain.majorUser.user.Genre;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,10 +14,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -37,6 +38,9 @@ public class Post {
 
     @Column
     private String content;
+
+    @Column
+    private Long viewCount;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

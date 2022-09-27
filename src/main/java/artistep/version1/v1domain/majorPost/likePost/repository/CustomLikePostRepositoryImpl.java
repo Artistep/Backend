@@ -26,4 +26,12 @@ public class CustomLikePostRepositoryImpl implements CustomLikePostRepository {
                 .fetchOne()));
     }
 
+    @Override
+    public Long LikedPostCountHJ(Long postId) {
+        return Long.parseLong(String.valueOf(queryFactory
+                .select(likePost.count())
+                .from(likePost)
+                .where(likePost.post.id.eq(postId))
+                .fetchOne()));
+    }
 }

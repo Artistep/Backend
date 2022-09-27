@@ -11,4 +11,6 @@ import java.util.List;
 public interface CustomLikePostRepository {
 
     int LikePostCount(Long userId);
+
+    Long LikedPostCountHJ(Long postId);
 }

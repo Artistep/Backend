@@ -20,38 +20,14 @@ public class PostRequestDto {
     @Builder
     @AllArgsConstructor
     @Data
-    public static class PageForm {
+    public static class PageRequestForm {
         private int page;
         private int size;
 
-        public PageForm() {
+        public PageRequestForm() {
             this.page = 1;
             this.size = 10;
         }
-    }
-
-    @Data
-    @NotNull
-    public static class UpdateTitleForm {
-        private String title;
-    }
-
-    @Data
-    @NotNull
-    public static class UpdateContentForm {
-        private String content;
-    }
-
-    @Data
-    @NotNull
-    public static class UpdateCategoryForm {
-        private PostCategory postCategory;
-    }
-
-    @Data
-    @NotNull
-    public static class UpdateStatusForm {
-        private String status;
     }
 
     // 추가할 것 : 파일 수정

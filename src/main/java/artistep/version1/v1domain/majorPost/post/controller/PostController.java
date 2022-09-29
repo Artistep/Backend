@@ -5,6 +5,7 @@ import artistep.version1.v1domain.majorComment.comment.repository.CommentReposit
 import artistep.version1.v1domain.majorPost.likePost.LikePost;
 import artistep.version1.v1domain.majorPost.likePost.repository.LikePostRepository;
 import artistep.version1.v1domain.majorPost.post.repository.PostRepository;
+import artistep.version1.v1domain.majorPost.post.service.PostService;
 import artistep.version1.v1domain.majorPost.postFile.repository.PostFileRepository;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,5 @@ import org.springframework.web.bind.annotation.RestController;
 @Api("게시글 컨트롤러")
 @RequestMapping("/post")
 public class PostController {
-    private final PostRepository postRepository;
-    private final CommentRepository commentRepository;
-    private final PostFileRepository postFileRepository;
-    private final LikePostRepository likePostRepository;
+    private final PostService service;
 }

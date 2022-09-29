@@ -21,7 +21,6 @@ public class CustomCommentRepositoryImpl implements CustomCommentRepository {
     public List<commentForm> getCommentListHJ(Long postId) {
         return queryFactory
                 .select(Projections.constructor(commentForm.class,
-                        comment.id,
                         comment.user.nickname,
                         comment.content,
                         comment.updatedAt))

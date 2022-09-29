@@ -15,7 +15,6 @@ public class CommentResponseDto {
     @AllArgsConstructor
     @NoArgsConstructor
     public static class commentForm {
-        private Long id;
         private String nickName;
         private String content;
         private LocalDateTime updatedAt;

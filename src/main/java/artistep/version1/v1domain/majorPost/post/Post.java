@@ -40,7 +40,7 @@ public class Post {
     private String content;
 
     @Column
-    private Long viewCount;
+    private int viewCount;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

@@ -10,7 +10,9 @@ import java.util.List;
 @Transactional
 public interface CustomLikePostRepository {
 
+    // user의 좋아요한 post 수
     int LikePostCount(Long userId);
 
+    // post의 좋아요 수
     Long LikedPostCountHJ(Long postId);
 }

@@ -1,9 +1,6 @@
 package artistep.version1.v1domain.majorPost.post.dto;
 
-import artistep.version1.v1domain.majorComment.comment.Comment;
 import artistep.version1.v1domain.majorComment.comment.dto.CommentResponseDto.*;
-import artistep.version1.v1domain.majorPost.likePost.LikePost;
-import artistep.version1.v1domain.majorPost.post.Post;
 import artistep.version1.v1domain.majorPost.postFile.PostFile;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +18,7 @@ public class PostResponseDto {
     @Data @Builder
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class PostPreviewForm {
+    public static class PostPreviewRespondForm {
         private String title;
         private String nickName;
         private LocalDateTime updatedAt;
@@ -37,7 +34,7 @@ public class PostResponseDto {
     @Data @Builder
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class PostDetailForm {
+    public static class PostRespondForm {
         private String title;
         private String nickName;
         private String content;
@@ -46,16 +43,4 @@ public class PostResponseDto {
         private List<commentForm> commentList;
         private List<PostFile> postFileList;
     }
-
-
-//    보류 -> 과연  필요?
-//    @Data @Builder
-//    @NoArgsConstructor
-//    @AllArgsConstructor
-//    public static class AllCategoryPostsPreviewForm {
-//        List<PostPreviewForm> freeTalkingPostList;
-//        List<PostPreviewForm> informationPostList;
-//        List<PostPreviewForm> feedbackPostList;
-//        List<PostPreviewForm> noticePostList;
-//    }
 }

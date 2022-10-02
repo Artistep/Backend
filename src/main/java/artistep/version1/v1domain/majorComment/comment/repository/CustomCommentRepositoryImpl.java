@@ -18,7 +18,7 @@ public class CustomCommentRepositoryImpl implements CustomCommentRepository {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<commentForm> getCommentListHJ(Long postId) {
+    public List<commentForm> loadCommentListByPostHJ(Long postId) {
         return queryFactory
                 .select(Projections.constructor(commentForm.class,
                         comment.user.nickname,
@@ -27,5 +27,13 @@ public class CustomCommentRepositoryImpl implements CustomCommentRepository {
                 .from(comment)
                 .where(comment.post.id.eq(postId))
                 .fetch();
+    }
+
+    @Override
+    public void deleteAllByPostHJ(Long postId) {
+        queryFactory
+                .delete(comment)
+                .where(comment.post.id.eq(postId))
+                .execute();
     }
 }

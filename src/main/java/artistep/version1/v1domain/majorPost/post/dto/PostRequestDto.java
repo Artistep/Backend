@@ -20,19 +20,4 @@ public class PostRequestDto {
         private Genre genre;
         private List<String> postFile;
     }
-
-    @Builder
-    @AllArgsConstructor
-    @Data
-    public static class PageForm {
-        private int page;
-        private int size;
-
-        public PageForm() {
-            this.page = 1;
-            this.size = 10;
-        }
-    }
-
-    // 추가할 것 : 파일 수정
 }

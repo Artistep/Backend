@@ -4,6 +4,7 @@ import artistep.version1.v1domain.majorPost.post.Post;
 import artistep.version1.v1domain.majorUser.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 
 
 @Entity
-@Builder
+@Builder @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Comment {

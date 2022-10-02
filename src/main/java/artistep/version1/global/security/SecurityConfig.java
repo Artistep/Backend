@@ -41,15 +41,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().disable()
                 .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                    .authorizeRequests()
-                    .antMatchers(needToAuthenticateURI).authenticated()
-                    .anyRequest().permitAll()
-                .and()
-                    .oauth2Login()
-                    .successHandler(oAuth2SuccessHandler)
-                    .userInfoEndpoint().userService(customOAuth2UserService);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//                .and()
+//                    .authorizeRequests()
+//                    .antMatchers(needToAuthenticateURI).authenticated()
+//                    .anyRequest().permitAll()
+//                .and()
+//                    .oauth2Login()
+//                    .successHandler(oAuth2SuccessHandler)
+//                    .userInfoEndpoint().userService(customOAuth2UserService);
     }
 
 //    private SecurityExpressionHandler<FilterInvocation> configExpressionHandler() {

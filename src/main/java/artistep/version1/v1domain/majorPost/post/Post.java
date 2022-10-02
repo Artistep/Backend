@@ -39,7 +39,7 @@ public class Post {
     @Column
     private String content;
 
-    @Column
+    @Column(columnDefinition = "integer default 0")
     private int viewCount;
 
     @CreationTimestamp

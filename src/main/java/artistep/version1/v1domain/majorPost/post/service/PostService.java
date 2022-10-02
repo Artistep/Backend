@@ -10,7 +10,7 @@ public interface PostService {
 
     PostRespondForm getPostDetailHJ(Long postId);
 
-    void updatePostHJ(Long postId, PostRequestForm postRequestForm);
+    void updatePostHJ(Long userId, Long postId, PostRequestForm postRequestForm);
 
     void deletePostHJ(Long postId);
 }

@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 public class CommentResponseDto {
     /**
      * 임시 댓글 dto
+     * 굳이 필요할지 고민하기
      */
     @Builder @Data
     @AllArgsConstructor

@@ -38,9 +38,9 @@ public class PostResponseDto {
         private String title;
         private String nickName;
         private String content;
-        private LocalDateTime updatedAt;
         private Long likeCount;
         private List<commentForm> commentList;
-        private List<PostFile> postFileList;
+        private List<String> postFileList;
+        private LocalDateTime updatedAt;
     }
 }
